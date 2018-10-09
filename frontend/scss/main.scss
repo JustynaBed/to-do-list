@@ -16,5 +16,83 @@ body  {
 }
 
 h1 {
-    color: $secondary-color;
+    padding: 0;
+
 }
+
+.container {
+    width: 40vw;
+    background: white;
+    margin: 10vh auto 30vh;
+
+    .row {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas:
+        'col1 col2 col3';
+    grid-template-columns: 1fr 8fr 1fr;
+    color: $primary-color;
+    border-top: 1px solid $secondary-color;
+
+        &:nth-child(1) {
+        background: $primary-color;
+        color: #9eb2c0;
+        }
+
+        .col {
+            padding: 1.5rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .col-1 {
+          grid-area: col1;
+          border-right: 1px dashed $line-color;
+        }
+
+        .col-2 {
+          grid-area: col2;
+          border-left: 1px dashed $line-color;
+        }
+
+        .col-3 {
+          grid-area: col3;
+        //position: relative;
+
+          .delete-icon {
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+          }
+        }
+    }
+
+
+}
+
+input[type=checkbox] {
+    transform: scale(1);
+    cursor: pointer;
+    visibility: hidden;
+
+    &:after {
+        content: " ";
+        display: inline-block;
+        padding: 0.54rem;
+        color: #d0dba8;
+        visibility: visible;
+        border: 1px solid $secondary-color;
+    }
+
+    &:checked:after {
+        content: "\2714";
+        padding: 0 0.2rem;
+        font-weight: bold;
+    }
+}
+
+

@@ -8,4 +8,51 @@ body {
   font-family: "Lato", sans-serif; }
 
 h1 {
-  color: #9eb2c0; }
+  padding: 0; }
+
+.container {
+  width: 40vw;
+  background: white;
+  margin: 10vh auto 30vh; }
+  .container .row {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: 'col1 col2 col3';
+    grid-template-columns: 1fr 8fr 1fr;
+    color: #2e3641;
+    border-top: 1px solid #9eb2c0; }
+    .container .row:nth-child(1) {
+      background: #2e3641;
+      color: #9eb2c0; }
+    .container .row .col {
+      padding: 1.5rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .container .row .col-1 {
+      grid-area: col1;
+      border-right: 1px dashed #f2e3df; }
+    .container .row .col-2 {
+      grid-area: col2;
+      border-left: 1px dashed #f2e3df; }
+    .container .row .col-3 {
+      grid-area: col3; }
+      .container .row .col-3 .delete-icon {
+        width: 20px;
+        height: 20px; }
+
+input[type=checkbox] {
+  transform: scale(1);
+  cursor: pointer;
+  visibility: hidden; }
+  input[type=checkbox]:after {
+    content: " ";
+    display: inline-block;
+    padding: 0.54rem;
+    color: #d0dba8;
+    visibility: visible;
+    border: 1px solid #9eb2c0; }
+  input[type=checkbox]:checked:after {
+    content: "\2714";
+    padding: 0 0.2rem;
+    font-weight: bold; }
