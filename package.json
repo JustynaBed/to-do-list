@@ -1,0 +1,22 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "Qunabu Junior Developer Recruitment Task",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w frontend/scss/ -o frontend/css --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustynaBed/to-do-list.git"
+  },
+  "author": "JustynaBed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustynaBed/to-do-list/issues"
+  },
+  "homepage": "https://github.com/JustynaBed/to-do-list#readme",
+  "dependencies": {
+    "node-sass": "^4.9.3"
+  }
+}
