@@ -34,7 +34,7 @@ h1 {
     color: $primary-color;
     border-top: 1px solid $secondary-color;
 
-        &:nth-child(1) {
+        &.row-header {
         background: $primary-color;
         color: #9eb2c0;
         }
@@ -42,22 +42,28 @@ h1 {
         .col {
             padding: 1.5rem 1rem;
             display: flex;
-            justify-content: center;
-            align-items: center;
+
         }
 
         .col-1 {
           grid-area: col1;
           border-right: 1px dashed $line-color;
+          justify-content: center;
+            align-items: center;
         }
 
         .col-2 {
           grid-area: col2;
           border-left: 1px dashed $line-color;
+          justify-content: flex-start;
+          align-items: center;
+
         }
 
         .col-3 {
           grid-area: col3;
+          justify-content: center;
+            align-items: center;
         //position: relative;
 
           .delete-icon {
@@ -83,9 +89,10 @@ input[type=checkbox] {
         content: " ";
         display: inline-block;
         padding: 0.54rem;
+        margin: -3px;
         color: #d0dba8;
         visibility: visible;
-        border: 1px solid $secondary-color;
+        border: 2px solid $secondary-color;
     }
 
     &:checked:after {
@@ -96,3 +103,23 @@ input[type=checkbox] {
 }
 
 
+form {
+    input {
+        border: none;
+        outline: none;
+        width: 100%;
+        color: $primary-color;
+        font-size: 1.4rem;
+        font-style: $font-stack;
+    }
+
+    .submit-btn {
+        color: $secondary-color;
+        border: none;
+        background-color: #fff;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

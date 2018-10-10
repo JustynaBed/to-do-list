@@ -21,22 +21,26 @@ h1 {
     grid-template-columns: 1fr 8fr 1fr;
     color: #2e3641;
     border-top: 1px solid #9eb2c0; }
-    .container .row:nth-child(1) {
+    .container .row.row-header {
       background: #2e3641;
       color: #9eb2c0; }
     .container .row .col {
       padding: 1.5rem 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center; }
+      display: flex; }
     .container .row .col-1 {
       grid-area: col1;
-      border-right: 1px dashed #f2e3df; }
+      border-right: 1px dashed #f2e3df;
+      justify-content: center;
+      align-items: center; }
     .container .row .col-2 {
       grid-area: col2;
-      border-left: 1px dashed #f2e3df; }
+      border-left: 1px dashed #f2e3df;
+      justify-content: flex-start;
+      align-items: center; }
     .container .row .col-3 {
-      grid-area: col3; }
+      grid-area: col3;
+      justify-content: center;
+      align-items: center; }
       .container .row .col-3 .delete-icon {
         width: 20px;
         height: 20px; }
@@ -49,10 +53,26 @@ input[type=checkbox] {
     content: " ";
     display: inline-block;
     padding: 0.54rem;
+    margin: -3px;
     color: #d0dba8;
     visibility: visible;
-    border: 1px solid #9eb2c0; }
+    border: 2px solid #9eb2c0; }
   input[type=checkbox]:checked:after {
     content: "\2714";
     padding: 0 0.2rem;
     font-weight: bold; }
+
+form input {
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #2e3641;
+  font-size: 1.4rem;
+  font-style: "Lato", sans-serif; }
+
+form .submit-btn {
+  color: #9eb2c0;
+  border: none;
+  background-color: #fff; }
+  form .submit-btn:focus {
+    outline: none; }
