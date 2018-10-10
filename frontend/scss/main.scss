@@ -123,3 +123,12 @@ form {
         }
     }
 }
+
+.task-done-title {
+    text-decoration: line-through;
+    color: $secondary-color;
+}
+
+.task-done-trash {
+   filter: brightness(270%);
+}

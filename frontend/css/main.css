@@ -76,3 +76,10 @@ form .submit-btn {
   background-color: #fff; }
   form .submit-btn:focus {
     outline: none; }
+
+.task-done-title {
+  text-decoration: line-through;
+  color: #9eb2c0; }
+
+.task-done-trash {
+  filter: brightness(270%); }
