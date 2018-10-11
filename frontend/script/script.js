@@ -18,7 +18,6 @@ function submitTodo(event) {
     } else {
         postTodoAPI(todoValue);
         todoInput.value = '';
-        console.log(todoValue)
     }
 }
 
@@ -55,9 +54,7 @@ function getTodosAPI(cb) {
 }
 
 function showTodos(data) {
-    console.log(data);
     const todos = JSON.parse(data);
-    console.log(todos);
 
     let renderList = '';
 
@@ -72,12 +69,13 @@ function showTodos(data) {
                     <h3>${todo.name}</h3>
                 </div>
                 <div class="col col-3">
-                    <img src="../assets/trash.png" alt="" class="delete-icon">
+                    <img src="../assets/trash.png" alt="" class="delete-icon" data-id="${todo.id}">
                 </div>
             </div>
         `
     })
-    todoList.innerHTML = renderList
+    todoList.innerHTML = renderList;
+    getIcons();
 }
 
 function postTodoAPI(todoName) {
@@ -96,4 +94,35 @@ function postTodoAPI(todoName) {
         console.log('error')
     }
     ajax.send(`name=${name}`);
+}
+
+function getIcons() {
+    const deleteIcon = document.querySelectorAll('.delete-icon');
+
+    deleteIcon.forEach(icon => {
+        const todoID = icon.dataset.id;
+        icon.addEventListener('click', function(event){
+            event.preventDefault();
+            deleteTodoAPI(todoID)
+        })
+    })
+}
+
+function deleteTodoAPI(id) {
+    const url = `https://5bbeeaa072de1d00132536aa.mockapi.io/todo/${id}`;
+
+    const ajax = new XMLHttpRequest();
+
+    ajax.open('DELETE', url, true);
+    ajax.onload = function () {
+        if (this.status === 200) {
+            getTodosAPI(showTodos);
+        } else {
+            console.log('error')
+        }
+    }
+    ajax.onerror = function () {
+        console.log('error')
+    }
+    ajax.send()
 }
