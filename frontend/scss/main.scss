@@ -1,4 +1,5 @@
 $background-color: #e9f0f4;
+$background-color-info: #ED6B86;
 $primary-color: #2e3641;
 $secondary-color: #9eb2c0;
 $line-color: #f2e3df;
@@ -42,7 +43,6 @@ h1 {
         .col {
             padding: 1.5rem 1rem;
             display: flex;
-
         }
 
         .col-1 {
@@ -131,4 +131,26 @@ form {
 
 .task-done-trash {
    filter: brightness(270%);
+}
+
+.information {
+  display: none;
+    p {
+    font-family: $font-stack;
+  }
+}
+.showInformation {
+  display: block;
+  padding: 1.5rem 1rem;
+  width: 40vw;
+  margin: 5rem auto 1rem;
+  background: $background-color-info;
+  border: 2px solid darken($background-color-info, 20);
+  text-align: center;
+
+  .textInformation {
+    color: $primary-color;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 }

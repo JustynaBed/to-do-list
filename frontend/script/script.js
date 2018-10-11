@@ -1,18 +1,42 @@
 const todoList = document.querySelector('.todos');
+const information = document.querySelector('.information');
 const httpForm = document.getElementById('http-form');
 const todoInput = document.getElementById('todo-input');
 const submitBtn = document.getElementById('submit-btn');
 
 
-const url = 'https://5bbeeaa072de1d00132536aa.mockapi.io/todo'
+const url = 'https://5bbeeaa072de1d00132536aa.mockapi.io/todo';
 
+httpForm.addEventListener('submit', submitTodo)
+
+function submitTodo(event) {
+    event.preventDefault();
+    const todoValue = todoInput.value;
+
+    if(todoValue.length === 0) {
+        showInformation('Please enter the value');
+    } else {
+        postTodoAPI(todoValue);
+        todoInput.value = '';
+        console.log(todoValue)
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     getTodosAPI(showTodos);
 })
 
+function showInformation(text) {
+    information.classList.add('showInformation');
+    information.innerHTML = `<p class="textInformation">${text}</p>`;
+
+    setTimeout(() => {
+        information.classList.remove('showInformation');
+    }, 3000)
+}
+
 function getTodosAPI(cb) {
-    const url = 'https://5bbeeaa072de1d00132536aa.mockapi.io/todo'
+    const url = 'https://5bbeeaa072de1d00132536aa.mockapi.io/todo';
 
     const ajax = new XMLHttpRequest();
 
@@ -54,4 +78,22 @@ function showTodos(data) {
         `
     })
     todoList.innerHTML = renderList
+}
+
+function postTodoAPI(todoName) {
+    const name = todoName;
+    const url = 'https://5bbeeaa072de1d00132536aa.mockapi.io/todo';
+
+    const ajax = new XMLHttpRequest();
+
+    ajax.open('POST', url, true);
+
+    ajax.setRequestHeader('Content-Type', 'application/x-www.form-urlencoded');
+    ajax.onload = function () {
+        getTodosAPI(showTodos);
+    }
+    ajax.onerror = function () {
+        console.log('error')
+    }
+    ajax.send(`name=${name}`);
 }

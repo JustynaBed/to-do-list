@@ -83,3 +83,21 @@ form .submit-btn {
 
 .task-done-trash {
   filter: brightness(270%); }
+
+.information {
+  display: none; }
+  .information p {
+    font-family: "Lato", sans-serif; }
+
+.showInformation {
+  display: block;
+  padding: 1.5rem 1rem;
+  width: 40vw;
+  margin: 5rem auto 1rem;
+  background: #ED6B86;
+  border: 2px solid #d81a42;
+  text-align: center; }
+  .showInformation .textInformation {
+    color: #2e3641;
+    font-size: 1.2rem;
+    font-weight: bold; }
