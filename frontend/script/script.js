@@ -55,7 +55,7 @@ function getTodosAPI(cb) {
 
 function showTodos(data) {
     const todos = JSON.parse(data);
-
+    console.log(todos)
     let renderList = '';
 
     todos.map(todo => {
@@ -63,13 +63,13 @@ function showTodos(data) {
         `
             <div class="row">
                 <div class="col col-1">
-                    <input class="checkbox" type="checkbox" name="" data-id="${todo.id}">
+                    <input class="checkbox todoName" id="todoName" type="checkbox" name="todo-input" data-id="${todo.id}">
                 </div>
                 <div class="col col-2">
-                    <h3>${todo.name}</h3>
+                    <h3 class="todoName" id="todoName" data-id="${todo.id}">${todo.name}</h3>
                 </div>
                 <div class="col col-3">
-                    <img src="../assets/trash.png" alt="" class="delete-icon" data-id="${todo.id}">
+                    <img src="../assets/trash.png" alt="trash-img" class="delete-icon" data-id="${todo.id}">
                 </div>
             </div>
         `
@@ -86,7 +86,7 @@ function postTodoAPI(todoName) {
 
     ajax.open('POST', url, true);
 
-    ajax.setRequestHeader('Content-Type', 'application/x-www.form-urlencoded');
+    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     ajax.onload = function () {
         getTodosAPI(showTodos);
     }
