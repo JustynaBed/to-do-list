@@ -53,6 +53,8 @@ function getTodosAPI(cb) {
     ajax.send()
 }
 
+
+
 function showTodos(data) {
     const todos = JSON.parse(data);
     console.log(todos)
@@ -63,10 +65,10 @@ function showTodos(data) {
         `
             <div class="row">
                 <div class="col col-1">
-                    <input class="checkbox todoName" id="todoName" type="checkbox" name="todo-input" data-id="${todo.id}">
+                    <input id="todo-checkbox-${todo.id}" type="checkbox" name="todo-input" data-id="${todo.id}">
                 </div>
                 <div class="col col-2">
-                    <h3 class="todoName" id="todoName" data-id="${todo.id}">${todo.name}</h3>
+                    <h3 class="todo-name" id="todo-name-${todo.id}" data-id="${todo.id}">${todo.name}</h3>
                 </div>
                 <div class="col col-3">
                     <img src="../assets/trash.png" alt="trash-img" class="delete-icon" data-id="${todo.id}">
@@ -76,7 +78,9 @@ function showTodos(data) {
     })
     todoList.innerHTML = renderList;
     getIcons();
+    getCheckboxes();
 }
+
 
 function postTodoAPI(todoName) {
     const name = todoName;
@@ -97,14 +101,35 @@ function postTodoAPI(todoName) {
 }
 
 function getIcons() {
-    const deleteIcon = document.querySelectorAll('.delete-icon');
+    const deleteIcons = document.querySelectorAll('.delete-icon');
 
-    deleteIcon.forEach(icon => {
+    deleteIcons.forEach(icon => {
         const todoID = icon.dataset.id;
         icon.addEventListener('click', function(event){
             event.preventDefault();
-            deleteTodoAPI(todoID)
+            deleteTodoAPI(todoID);
         })
+    })
+}
+
+function getCheckboxes() {
+    const checkboxes = document.querySelectorAll("input[type=checkbox]");
+
+    checkboxes.forEach(checkbox => {
+        const todoID = checkbox.dataset.id;
+        const parent = checkbox.parentElement.parentElement;
+
+        if (checkbox !== undefined && checkbox.length !== 0) {
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    parent.querySelector('.todo-name').classList.add('task-done-title');
+                    parent.querySelector('.delete-icon').classList.add('task-done-trash');
+                } else {
+                    parent.querySelector('.todo-name').classList.remove('task-done-title');
+                    parent.querySelector('.delete-icon').classList.remove('task-done-trash');
+                }
+            })
+        }
     })
 }
 
@@ -124,5 +149,5 @@ function deleteTodoAPI(id) {
     ajax.onerror = function () {
         console.log('error')
     }
-    ajax.send()
+    ajax.send();
 }
